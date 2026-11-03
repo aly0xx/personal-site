@@ -3,6 +3,9 @@ title: "The Wright Brothers"
 author: "David McCullough"
 rating: 9
 dateRead: "5/5/2026"
+cover: "/covers/wright.jpg"
+spineColor: "#e8e8e8"
+textColor: "#8f2a2f"
 ---
 
 ## Summary

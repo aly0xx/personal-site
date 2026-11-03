@@ -3,6 +3,9 @@ title: "Kelly: More Than My Share of It All"
 author: "Clarence Johnson"
 rating: 4
 dateRead: "6/4/2026"
+cover: "/covers/kelly.jpg"
+spineColor: "#1d4fa8"
+textColor: "#fff"
 ---
 
 ## Summary

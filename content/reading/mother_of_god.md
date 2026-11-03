@@ -3,6 +3,9 @@ title: "Mother of God: An Extraordinary Journey into the Uncharted Tributaries o
 author: "Paul Rosolie"
 rating: 8
 dateRead: "3/12/2026"
+cover: "/covers/mother_of_god.jpg"
+spineColor: "#6b4a1c"
+textColor: "#f2d36b"
 ---
 
 ## Summary

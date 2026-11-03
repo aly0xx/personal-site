@@ -1,0 +1,672 @@
+{
+  "Percy Jackson and the Olympians: The Lightning Thief": {
+    "cover": "/covers/library/the-lightning-thief.jpg",
+    "spineColor": "#0d333a",
+    "textColor": "#fff"
+  },
+  "Percy Jackson and the Olympians: The Sea of Monsters": {
+    "cover": "/covers/library/the-sea-of-monsters.jpg",
+    "spineColor": "#0899d1",
+    "textColor": "#000"
+  },
+  "Percy Jackson and the Olympians: The Titan's Curse": {
+    "cover": "/covers/library/the-titan-s-curse.jpg",
+    "spineColor": "#152f52",
+    "textColor": "#fff"
+  },
+  "Percy Jackson and the Olympians: The Battle of the Labyrinth": {
+    "cover": "/covers/library/the-battle-of-the-labyrinth.jpg",
+    "spineColor": "#5f1c1b",
+    "textColor": "#fff"
+  },
+  "Percy Jackson and the Olympians: The Last Olympian": {
+    "cover": "/covers/library/the-last-olympian.jpg",
+    "spineColor": "#1a2d29",
+    "textColor": "#fff"
+  },
+  "The Heroes of Olympus: The Lost Hero": {
+    "cover": "/covers/library/the-lost-hero.jpg",
+    "spineColor": "#175f5c",
+    "textColor": "#fff"
+  },
+  "The Heroes of Olympus: The Son of Neptune": {
+    "cover": "/covers/library/the-son-of-neptune.jpg",
+    "spineColor": "#b8a562",
+    "textColor": "#000"
+  },
+  "The Heroes of Olympus: The Mark of Athena": {
+    "cover": "/covers/library/the-mark-of-athena.jpg",
+    "spineColor": "#5d1424",
+    "textColor": "#fff"
+  },
+  "The Heroes of Olympus: The House of Hades": {
+    "cover": "/covers/library/the-house-of-hades.jpg",
+    "spineColor": "#c6ac5d",
+    "textColor": "#000"
+  },
+  "The Heroes of Olympus: The Blood of Olympus": {
+    "cover": "/covers/library/the-blood-of-olympus.jpg",
+    "spineColor": "#58201f",
+    "textColor": "#fff"
+  },
+  "The Trials of Apollo: The Hidden Oracle": {
+    "cover": "/covers/library/the-hidden-oracle.jpg",
+    "spineColor": "#09324a",
+    "textColor": "#fff"
+  },
+  "The Trials of Apollo: The Dark Prophecy": {
+    "cover": "/covers/library/the-dark-prophecy.jpg",
+    "spineColor": "#2d1830",
+    "textColor": "#fff"
+  },
+  "The Trials of Apollo: The Burning Maze": {
+    "cover": "/covers/library/the-burning-maze.jpg",
+    "spineColor": "#1d1532",
+    "textColor": "#fff"
+  },
+  "The Trials of Apollo: The Tyrant's Tomb": {
+    "cover": "/covers/library/the-tyrant-s-tomb.jpg",
+    "spineColor": "#2c1d1c",
+    "textColor": "#fff"
+  },
+  "The Trials of Apollo: The Tower of Nero": {
+    "cover": "/covers/library/the-tower-of-nero.jpg",
+    "spineColor": "#0d213a",
+    "textColor": "#fff"
+  },
+  "Magnus Chase and the Gods of Asgard: The Sword of Summer": {
+    "cover": "/covers/library/the-sword-of-summer.jpg",
+    "spineColor": "#292a58",
+    "textColor": "#fff"
+  },
+  "Magnus Chase and the Gods of Asgard: The Hammer of Thor": {
+    "cover": "/covers/library/the-hammer-of-thor.jpg",
+    "spineColor": "#1d2d30",
+    "textColor": "#fff"
+  },
+  "Magnus Chase and the Gods of Asgard: The Ship of the Dead": {
+    "cover": "/covers/library/the-ship-of-the-dead.jpg",
+    "spineColor": "#22202a",
+    "textColor": "#fff"
+  },
+  "Percy Jackson and the Greek Heroes": {
+    "cover": "/covers/library/greek-heroes.jpg",
+    "spineColor": "#b06236",
+    "textColor": "#000"
+  },
+  "Percy Jackson and the Greek Gods": {
+    "cover": "/covers/library/greek-gods.jpg",
+    "spineColor": "#312717",
+    "textColor": "#fff"
+  },
+  "Percy Jackson - The Demigod Files": {
+    "cover": "/covers/library/the-demigod-files.jpg",
+    "spineColor": "#222626",
+    "textColor": "#fff"
+  },
+  "The Maze Runner": {
+    "cover": "/covers/library/the-maze-runner.jpg",
+    "spineColor": "#242622",
+    "textColor": "#fff"
+  },
+  "The Scorch Trials": {
+    "cover": "/covers/library/the-scorch-trials.jpg",
+    "spineColor": "#2a221e",
+    "textColor": "#fff"
+  },
+  "The Death Cure": {
+    "cover": "/covers/library/the-death-cure.jpg",
+    "spineColor": "#334e59",
+    "textColor": "#fff"
+  },
+  "The Kill Order": {
+    "cover": "/covers/library/the-kill-order.jpg",
+    "spineColor": "#1b222c",
+    "textColor": "#fff"
+  },
+  "The Fever Code": {
+    "cover": "/covers/fever-code.jpg",
+    "spineColor": "#8f7f22",
+    "textColor": "#fff"
+  },
+  "Chandra's Cosmos": {
+    "cover": "/covers/library/chandra-s-cosmos.jpg",
+    "spineColor": "#231f28",
+    "textColor": "#fff"
+  },
+  "Remembering the Kanji 1": {
+    "cover": "/covers/library/remembering-the-kanji-1.jpg",
+    "spineColor": "#f8e7af",
+    "textColor": "#000"
+  },
+  "Steve Jobs - Walter Isaacson": {
+    "cover": "/covers/library/steve-jobs.jpg",
+    "spineColor": "#242424",
+    "textColor": "#fff"
+  },
+  "iWoz - Steve Wozniak": {
+    "cover": "/covers/library/iwoz.jpg",
+    "spineColor": "#242423",
+    "textColor": "#fff"
+  },
+  "Einstein: His Life and Universe - Walter Isaacson": {
+    "cover": "/covers/library/einstein.jpg",
+    "spineColor": "#67150f",
+    "textColor": "#fff"
+  },
+  "Elon Musk - Walter Isaacson": {
+    "cover": "/covers/library/elon-isaacson.jpg",
+    "spineColor": "#201d2b",
+    "textColor": "#fff"
+  },
+  "Elon Musk - Ashlee Vance": {
+    "cover": "/covers/library/elon-musk.jpg",
+    "spineColor": "#281f27",
+    "textColor": "#fff"
+  },
+  "The Code Breaker - Walter Isaacson": {
+    "cover": "/covers/library/the-code-breaker.jpg",
+    "spineColor": "#162532",
+    "textColor": "#fff"
+  },
+  "American Prometheus - Kai Bird and Martin J. Sherwin": {
+    "cover": "/covers/library/american-prometheus.jpg",
+    "spineColor": "#c90f16",
+    "textColor": "#fff"
+  },
+  "Shoe Dog - Phil Knight": {
+    "cover": "/covers/library/shoe-dog.jpg",
+    "spineColor": "#fc4332",
+    "textColor": "#000"
+  },
+  "Prince of Persia - Jordan Mechner": {
+    "cover": "/covers/library/prince-of-persia.jpg",
+    "spineColor": "#2e469c",
+    "textColor": "#fff"
+  },
+  "When the Heavens Went on Sale - Ashlee Vance": {
+    "cover": "/covers/library/when-the-heavens-went-on-sale.jpg",
+    "spineColor": "#3e5d9e",
+    "textColor": "#fff"
+  },
+  "The Idea Factory - Jon Gertner": {
+    "cover": "/covers/library/the-idea-factory.jpg",
+    "spineColor": "#dceec3",
+    "textColor": "#000"
+  },
+  "A History of Ancient Greece in Fifty Lives - David Stuttard": {
+    "cover": "/covers/library/a-history-of-ancient-greece-in-fifty-lives.jpg",
+    "spineColor": "#62615f",
+    "textColor": "#fff"
+  },
+  "Sapiens - Yuval Noah Harari": {
+    "cover": "/covers/library/sapiens.jpg",
+    "spineColor": "#e9d3c9",
+    "textColor": "#000"
+  },
+  "Mother of God - Paul Rosolie": {
+    "cover": "/covers/mother_of_god.jpg",
+    "spineColor": "#6b4a1c",
+    "textColor": "#f2d36b"
+  },
+  "Junglekeeper - Paul Rosolie": {
+    "cover": "/covers/junglekeeper.jpg",
+    "spineColor": "#35482f",
+    "textColor": "#f2b632"
+  },
+  "The Israel Lobby - John J. Mearsheimer and Stephen M. Walt": {
+    "cover": "/covers/israel_lobby.jpg",
+    "spineColor": "#1f4f8f",
+    "textColor": "#fff"
+  },
+  "Liftoff - Eric Berger": {
+    "cover": "/covers/liftoff.jpg",
+    "spineColor": "#2f9fe0",
+    "textColor": "#000"
+  },
+  "Reentry - Eric Berger": {
+    "cover": "/covers/library/reentry.jpg",
+    "spineColor": "#e4cbad",
+    "textColor": "#000"
+  },
+  "Eat and Run - Scott Jurek": {
+    "cover": "/covers/library/eat-and-run.jpg",
+    "spineColor": "#94aed6",
+    "textColor": "#000"
+  },
+  "The Penultimate Truth - Philip K. Dick": {
+    "cover": "/covers/library/the-penultimate-truth.jpg",
+    "spineColor": "#d3d4de",
+    "textColor": "#000"
+  },
+  "Non-Stop - Brian Aldiss": {
+    "cover": "/covers/library/non-stop.jpg",
+    "spineColor": "#adceee",
+    "textColor": "#000"
+  },
+  "The Fountains of Paradise - Arthur C. Clarke": {
+    "cover": "/covers/library/the-fountains-of-paradise.jpg",
+    "spineColor": "#8fb3d4",
+    "textColor": "#000"
+  },
+  "Fundamentals of Thermodynamics - Richard E. Sonntag": {
+    "cover": "/covers/library/fundamentals-of-thermodynamics.jpg",
+    "spineColor": "#bce7f6",
+    "textColor": "#000"
+  },
+  "Winnetou 1-3 (German) - Karl May": {
+    "cover": "/covers/library/winnetou.jpg",
+    "spineColor": "#d9d9d9",
+    "textColor": "#000"
+  },
+  "Die Unendliche Geschichte (German) - Michael Ende": {
+    "cover": "/covers/library/die-unendliche-geschichte.jpg",
+    "spineColor": "#8fb8db",
+    "textColor": "#000"
+  },
+  "NSA (German) - Andreas Eschbach": {
+    "cover": "/covers/library/nsa.jpg",
+    "spineColor": "#f1725e",
+    "textColor": "#000"
+  },
+  "Drache und Diamant (German) - Kai Meyer": {
+    "cover": "/covers/library/drache-und-diamant.jpg",
+    "spineColor": "#d58e72",
+    "textColor": "#000"
+  },
+  "Die Tore der Welt (German) - Ken Follett": {
+    "cover": "/covers/library/die-tore-der-welt.jpg",
+    "spineColor": "#3c290c",
+    "textColor": "#fff"
+  },
+  "The Hobbit - J.R.R. Tolkien": {
+    "cover": "/covers/library/the-hobbit.jpg",
+    "spineColor": "#5b4b38",
+    "textColor": "#fff"
+  },
+  "The Lord of the Rings: The Fellowship of the Ring - J.R.R. Tolkien": {
+    "cover": "/covers/library/the-lord-of-the-rings-the-fellowship-of-the-ring.jpg",
+    "spineColor": "#26638d",
+    "textColor": "#fff"
+  },
+  "The Lord of the Rings: The Two Towers - J.R.R. Tolkien": {
+    "cover": "/covers/library/the-two-towers.jpg",
+    "spineColor": "#242424",
+    "textColor": "#fff"
+  },
+  "The Hunger Games - Suzanne Collins": {
+    "cover": "/covers/library/the-hunger-games.jpg",
+    "spineColor": "#252222",
+    "textColor": "#fff"
+  },
+  "Catching Fire - Suzanne Collins": {
+    "cover": "/covers/library/catching-fire.jpg",
+    "spineColor": "#311717",
+    "textColor": "#fff"
+  },
+  "Mockingjay - Suzanne Collins": {
+    "cover": "/covers/library/mockingjay.jpg",
+    "spineColor": "#b0ccf9",
+    "textColor": "#000"
+  },
+  "The Ballad of Songbirds and Snakes - Suzanne Collins": {
+    "cover": "/covers/library/the-ballad-of-songbirds-and-snakes.jpg",
+    "spineColor": "#193116",
+    "textColor": "#fff"
+  },
+  "Wool - Hugh Howey": {
+    "cover": "/covers/wool.jpg",
+    "spineColor": "#a81c1c",
+    "textColor": "#fff"
+  },
+  "Shift - Hugh Howey": {
+    "cover": "/covers/shift.jpg",
+    "spineColor": "#2f6d8f",
+    "textColor": "#fff"
+  },
+  "Dust - Hugh Howey": {
+    "cover": "/covers/library/dust.jpg",
+    "spineColor": "#f9da1f",
+    "textColor": "#000"
+  },
+  "The Martian - Andy Weir": {
+    "cover": "/covers/library/the-martian.jpg",
+    "spineColor": "#d74b11",
+    "textColor": "#000"
+  },
+  "Artemis - Andy Weir": {
+    "cover": "/covers/library/artemis.jpg",
+    "spineColor": "#0d2f3b",
+    "textColor": "#fff"
+  },
+  "Project Hail Mary - Andy Weir": {
+    "cover": "/covers/library/project-hail-mary.jpg",
+    "spineColor": "#2c1b1b",
+    "textColor": "#fff"
+  },
+  "Ready Player One - Ernest Cline": {
+    "cover": "/covers/library/ready-player-one.jpg",
+    "spineColor": "#dfdad3",
+    "textColor": "#000"
+  },
+  "The Moon is a Harsh Mistress - Robert A. Heinlein": {
+    "cover": "/covers/library/the-moon-is-a-harsh-mistress.jpg",
+    "spineColor": "#5c1d0d",
+    "textColor": "#fff"
+  },
+  "Stranger in a Strange Land - Robert A. Heinlein": {
+    "cover": "/covers/library/stranger-in-a-strange-land.jpg",
+    "spineColor": "#2e1c19",
+    "textColor": "#fff"
+  },
+  "A Game of Thrones - George R.R. Martin": {
+    "cover": "/covers/library/a-game-of-thrones.jpg",
+    "spineColor": "#2a1e1d",
+    "textColor": "#fff"
+  },
+  "Harry Potter and the Chamber of Secrets - J.K. Rowling": {
+    "cover": "/covers/library/harry-potter-and-the-chamber-of-secrets.jpg",
+    "spineColor": "#649bd5",
+    "textColor": "#000"
+  },
+  "Harry Potter and the Prisoner of Azkaban - J.K. Rowling": {
+    "cover": "/covers/library/harry-potter-and-the-prisoner-of-azkaban.jpg",
+    "spineColor": "#98632e",
+    "textColor": "#fff"
+  },
+  "Harry Potter and the Goblet of Fire - J.K. Rowling": {
+    "cover": "/covers/library/harry-potter-and-the-goblet-of-fire.jpg",
+    "spineColor": "#a31d0f",
+    "textColor": "#fff"
+  },
+  "Harry Potter and the Order of the Phoenix - J.K. Rowling": {
+    "cover": "/covers/library/harry-potter-and-the-order-of-the-phoenix.jpg",
+    "spineColor": "#a39524",
+    "textColor": "#000"
+  },
+  "Harry Potter and the Half-Blood Prince - J.K. Rowling": {
+    "cover": "/covers/library/harry-potter-and-the-half-blood-prince.jpg",
+    "spineColor": "#14266f",
+    "textColor": "#fff"
+  },
+  "Norse Mythology - Neil Gaiman": {
+    "cover": "/covers/library/norse-mythology.jpg",
+    "spineColor": "#232424",
+    "textColor": "#fff"
+  },
+  "Assassin's Creed: Odyssey - Gordon Doherty": {
+    "cover": "/covers/library/assassin-s-creed-odyssey.jpg",
+    "spineColor": "#97b3db",
+    "textColor": "#000"
+  },
+  "Attack on Titan 1-5 - Hajime Isayama": {
+    "cover": "/covers/library/attack-on-titan.jpg",
+    "spineColor": "#272321",
+    "textColor": "#fff"
+  },
+  "Fullmetal Alchemist 1-27 - Hiromu Arakawa": {
+    "cover": "/covers/library/fullmetal-alchemist.jpg",
+    "spineColor": "#ead498",
+    "textColor": "#000"
+  },
+  "1Q84 (Japanese) - Haruki Murakami": {
+    "cover": "/covers/library/1q84.jpg",
+    "spineColor": "#e8d6ca",
+    "textColor": "#000"
+  },
+  "Bakuman 1-20 (Japanese) - Tsugumi Ohba and Takeshi Obata": {
+    "cover": "/covers/library/bakuman.jpg",
+    "spineColor": "#569bc1",
+    "textColor": "#000"
+  },
+  "Deep Learning - Andrew Glassner": {
+    "cover": "/covers/library/deep-learning.jpg",
+    "spineColor": "#f3f1b9",
+    "textColor": "#000"
+  },
+  "Foundations of Aerodynamics - Arnold M. Kuethe and Chuen-Yen Chow": {
+    "cover": "/covers/library/foundations-of-aerodynamics.jpg",
+    "spineColor": "#d9d9d9",
+    "textColor": "#000"
+  },
+  "The C Programming Language - Brian W. Kernighan and Dennis M. Ritchie": {
+    "cover": "/covers/library/the-c-programming-language.jpg",
+    "spineColor": "#d9d8d9",
+    "textColor": "#000"
+  },
+  "Digial Fundamentals - Thomas L. Floyd": {
+    "cover": "/covers/library/digital-fundamentals.jpg",
+    "spineColor": "#164939",
+    "textColor": "#fff"
+  },
+  "Anna Karenina - Leo Tolstoy": {
+    "cover": "/covers/library/anna-karenina.jpg",
+    "spineColor": "#2f1d18",
+    "textColor": "#fff"
+  },
+  "War and Peace - Leo Tolstoy": {
+    "cover": "/covers/library/war-and-peace.jpg",
+    "spineColor": "#322c15",
+    "textColor": "#fff"
+  },
+  "The Brothers Karamazov - Fyodor Dostoevsky": {
+    "cover": "/covers/library/the-brothers-karamazov.jpg",
+    "spineColor": "#b1d26a",
+    "textColor": "#000"
+  },
+  "Siddhartha - Hermann Hesse": {
+    "cover": "/covers/siddhartha.jpg",
+    "spineColor": "#2a2a2a",
+    "textColor": "#fff"
+  },
+  "The Colossus Rises - Peter Lerangis": {
+    "cover": "/covers/library/the-colossus-rises.jpg",
+    "spineColor": "#1e2a24",
+    "textColor": "#fff"
+  },
+  "Murder on the Orient Express - Agatha Christie": {
+    "cover": "/covers/library/murder-on-the-orient-express.jpg",
+    "spineColor": "#97754e",
+    "textColor": "#000"
+  },
+  "Treasure Island - Robert Louis Stevenson": {
+    "cover": "/covers/library/treasure-island.jpg",
+    "spineColor": "#96a5a3",
+    "textColor": "#000"
+  },
+  "Around the World in Eighty Days - Jules Verne": {
+    "cover": "/covers/library/around-the-world-in-eighty-days.jpg",
+    "spineColor": "#e7e3cb",
+    "textColor": "#000"
+  },
+  "Adventures of Huckleberry Finn - Mark Twain": {
+    "cover": "/covers/library/adventures-of-huckleberry-finn.jpg",
+    "spineColor": "#212426",
+    "textColor": "#fff"
+  },
+  "Journey to the Center of the Earth - Jules Verne": {
+    "cover": "/covers/library/journey-to-the-center-of-the-earth.jpg",
+    "spineColor": "#ecdfa8",
+    "textColor": "#000"
+  },
+  "The Alchemist - Paulo Coelho": {
+    "cover": "/covers/library/the-alchemist.jpg",
+    "spineColor": "#e0d19d",
+    "textColor": "#000"
+  },
+  "A Gentleman in Moscow - Amor Towles": {
+    "cover": "/covers/library/a-gentleman-in-moscow.jpg",
+    "spineColor": "#232428",
+    "textColor": "#fff"
+  },
+  "The Republic - Plato": {
+    "cover": "/covers/library/the-republic.jpg",
+    "spineColor": "#510f19",
+    "textColor": "#fff"
+  },
+  "Selected Works - Cicero": {
+    "cover": "/covers/library/selected-works.jpg",
+    "spineColor": "#aba493",
+    "textColor": "#000"
+  },
+  "Nichomachean Ethics - Aristotle": {
+    "cover": "/covers/library/nichomachean-ethics.jpg",
+    "spineColor": "#d7d1b6",
+    "textColor": "#000"
+  },
+  "Meditations - Marcus Aurelius": {
+    "cover": "/covers/library/meditations.jpg",
+    "spineColor": "#f4f4be",
+    "textColor": "#000"
+  },
+  "Can't Hurt Me - David Goggins": {
+    "cover": "/covers/cant-hurt-me.jpg",
+    "spineColor": "#c39a3a",
+    "textColor": "#000"
+  },
+  "The First 20 hours - Josh Kaufman": {
+    "cover": "/covers/library/the-first-20-hours.jpg",
+    "spineColor": "#f1e70d",
+    "textColor": "#000"
+  },
+  "Ikigai - Héctor García and Francesc Miralles": {
+    "cover": "/covers/library/ikigai.jpg",
+    "spineColor": "#9ed0e1",
+    "textColor": "#000"
+  },
+  "The Illiad - Homer": {
+    "cover": "/covers/library/the-illiad.jpg",
+    "spineColor": "#efd8b5",
+    "textColor": "#000"
+  },
+  "The Odyssey - Homer": {
+    "cover": "/covers/library/the-odyssey.jpg",
+    "spineColor": "#e6ce88",
+    "textColor": "#000"
+  },
+  "The Diary of a Young Girl - Anne Frank": {
+    "cover": "/covers/library/the-diary-of-a-young-girl.jpg",
+    "spineColor": "#d9cf16",
+    "textColor": "#000"
+  },
+  "Life Without Limits - Nick Vujicic": {
+    "cover": "/covers/library/life-without-limits.jpg",
+    "spineColor": "#a50c2f",
+    "textColor": "#fff"
+  },
+  "The $100 Startup - Chris Guillebeau": {
+    "cover": "/covers/library/the-100-startup.jpg",
+    "spineColor": "#f3ecbf",
+    "textColor": "#000"
+  },
+  "The Lean Startup - Eric Ries": {
+    "cover": "/covers/library/the-lean-startup.jpg",
+    "spineColor": "#1873b5",
+    "textColor": "#fff"
+  },
+  "The Personal MBA - Josh Kaufman": {
+    "cover": "/covers/library/the-personal-mba.jpg",
+    "spineColor": "#d6d9dc",
+    "textColor": "#000"
+  },
+  "Influence - Robert Cialdini": {
+    "cover": "/covers/library/influence.jpg",
+    "spineColor": "#304149",
+    "textColor": "#fff"
+  },
+  "How to Win Friends and Influence People - Dale Carnegie": {
+    "cover": "/covers/library/how-to-win-friends-and-influence-people.jpg",
+    "spineColor": "#e9dfc8",
+    "textColor": "#000"
+  },
+  "The Power of Now - Eckhart Tolle": {
+    "cover": "/covers/library/the-power-of-now.jpg",
+    "spineColor": "#0fac9d",
+    "textColor": "#000"
+  },
+  "Deep Work - Cal Newport": {
+    "cover": "/covers/library/deep-work.jpg",
+    "spineColor": "#f3d211",
+    "textColor": "#000"
+  },
+  "Zero to One - Peter Thiel": {
+    "cover": "/covers/library/zero-to-one.jpg",
+    "spineColor": "#6191ba",
+    "textColor": "#000"
+  },
+  "Atomic Habits - James Clear": {
+    "cover": "/covers/library/atomic-habits.jpg",
+    "spineColor": "#e3d7ce",
+    "textColor": "#000"
+  },
+  "The Wealth of Nations 1-3 - Adam Smith": {
+    "cover": "/covers/library/the-wealth-of-nations.jpg",
+    "spineColor": "#e8cdc9",
+    "textColor": "#000"
+  },
+  "The General Theory of Employment, Interest and Money - John Maynard Keynes": {
+    "cover": "/covers/library/the-general-theory-of-employment-interest-and-money.jpg",
+    "spineColor": "#b3a462",
+    "textColor": "#000"
+  },
+  "Capitalism and Freedom - Milton Friedman": {
+    "cover": "/covers/capitalism_and_freedom.jpg",
+    "spineColor": "#6b8aa8",
+    "textColor": "#000"
+  },
+  "The Road to Serfdom - Friedrich Hayek": {
+    "cover": "/covers/library/the-road-to-serfdom.jpg",
+    "spineColor": "#8b6a59",
+    "textColor": "#fff"
+  },
+  "Guns, Germs, and Steel - Jared Diamond": {
+    "cover": "/covers/library/guns-germs-and-steel.jpg",
+    "spineColor": "#2c281c",
+    "textColor": "#fff"
+  },
+  "The Selfish Gene - Richard Dawkins": {
+    "cover": "/covers/library/the-selfish-gene.jpg",
+    "spineColor": "#dfd8d2",
+    "textColor": "#000"
+  },
+  "Poor Charlie's Almanack - Charlie Munger": {
+    "cover": "/covers/poor_charlies_almanack.jpg",
+    "spineColor": "#2f3d1a",
+    "textColor": "#f2e6c0"
+  },
+  "Endurance - Alfred Lansing": {
+    "cover": "/covers/endurance.jpg",
+    "spineColor": "#b8902f",
+    "textColor": "#000"
+  },
+  "The Wright Brothers - David McCullough": {
+    "cover": "/covers/wright.jpg",
+    "spineColor": "#e8e8e8",
+    "textColor": "#8f2a2f"
+  },
+  "Elementary Linear Algebra - Howard Anton": {
+    "cover": "/covers/library/elementary-linear-algebra.jpg",
+    "spineColor": "#0c8961",
+    "textColor": "#000"
+  },
+  "Mathematical Statistics with Applications - Wackerly, Mendenhall, Scheaffer": {
+    "cover": "/covers/library/mathematical-statistics-with-applications.jpg",
+    "spineColor": "#d3deda",
+    "textColor": "#000"
+  },
+  "Discrete Mathematics and Its Applications - Kenneth H. Rosen": {
+    "cover": "/covers/library/discrete-mathematics-and-its-applications.jpg",
+    "spineColor": "#222526",
+    "textColor": "#fff"
+  },
+  "The Feynman Lectures on Physics (Volume 1) - Richard P. Feynman": {
+    "cover": "/covers/library/the-feynman-lectures-on-physics.jpg",
+    "spineColor": "#af032b",
+    "textColor": "#fff"
+  },
+  "Computer Organization and Design - David A. Patterson and John L. Hennessy": {
+    "cover": "/covers/library/computer-organization-and-design.jpg",
+    "spineColor": "#d9d9d9",
+    "textColor": "#000"
+  }
+}

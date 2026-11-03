@@ -3,6 +3,9 @@ title: "Siddhartha: eine indische dichtung"
 author: "Hermann Hesse"
 rating: 10
 dateRead: "2/20/2026"
+cover: "/covers/siddhartha.jpg"
+spineColor: "#2a2a2a"
+textColor: "#fff"
 ---
 
 ## Summary

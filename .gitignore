@@ -39,3 +39,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# tasteskill working files
+/.taste-skill/
+
+# playwright
+/test-results/
+/playwright-report/

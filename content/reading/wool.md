@@ -3,6 +3,9 @@ title: "Wool"
 author: "Hugh Howey"
 rating: 7
 dateRead: "10/20/2025"
+cover: "/covers/wool.jpg"
+spineColor: "#a81c1c"
+textColor: "#fff"
 ---
 
 ## Summary

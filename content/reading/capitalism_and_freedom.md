@@ -3,6 +3,9 @@ title: "Capitalism and Freedom"
 author: "Milton Friedman"
 rating: 9
 dateRead: "5/28/2026"
+cover: "/covers/capitalism_and_freedom.jpg"
+spineColor: "#6b8aa8"
+textColor: "#000"
 ---
 
 ## Summary

@@ -1,18 +1,26 @@
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
-import { JetBrains_Mono } from "next/font/google";
+import { DM_Sans, Lora } from "next/font/google";
 import Navbar from "@/components/Navbar";
 
-const jetbrainsMono = JetBrains_Mono({
+const lora = Lora({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });
 
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  weight: ["700"],
+  variable: "--font-dm-sans",
+});
+
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <main className={`${jetbrainsMono.className} bg-gray-900 text-white min-h-screen`}>
+    <div className={`${lora.className} ${dmSans.variable} site`}>
       <Navbar />
-      <Component {...pageProps} />
-    </main >
+      <main className="site-main">
+        <Component {...pageProps} />
+      </main>
+    </div>
   );
 }

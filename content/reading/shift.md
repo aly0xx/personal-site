@@ -3,6 +3,9 @@ title: "Shift"
 author: "Hugh Howey"
 rating: 8
 dateRead: "1/5/2026"
+cover: "/covers/shift.jpg"
+spineColor: "#2f6d8f"
+textColor: "#fff"
 ---
 
 ## Summary

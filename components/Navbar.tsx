@@ -1,58 +1,38 @@
 import Link from "next/link";
-import { useState } from "react";
+import { useRouter } from "next/router";
+
+const LINKS = [
+  { href: "/", label: "Home" },
+  { href: "/reading", label: "Reading" },
+  { href: "/library", label: "Library" },
+  { href: "/deep-dives", label: "Deep Dives" },
+];
+
+function NavLinks() {
+  const { pathname } = useRouter();
+
+  return LINKS.map((link) => {
+    const active = link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
+    return (
+      <Link key={link.href} href={link.href} aria-current={active ? "page" : undefined}>
+        {link.label}
+      </Link>
+    );
+  });
+}
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
-
   return (
-    <nav className="sticky top-0 z-50 bg-neutral-800 backdrop-blur border-b border-neutral-700">
-      <div className="mx-auto max-w-6xl px-6 h-14 flex items-center justify-start">
-        {/* Desktop Menu */}
-        <div className="hidden sm:flex items-center gap-6 text-sm text-neutral-400">
-          <Link href="/" className="hover:text-neutral-100 transition-colors">
-            Home
-          </Link>
-          <Link href="/reading" className="hover:text-neutral-100 transition-colors">
-            Reading
-          </Link>
-          <Link href="/deep-dives" className="hover:text-neutral-100 transition-colors">
-            Deep Dives
-          </Link>
+    <>
+      <nav className="topbar" aria-label="Main">
+        <NavLinks />
+      </nav>
+      <nav className="sidebar" aria-label="Main">
+        <p className="sidebar-label">NAVIGATION</p>
+        <div className="sidebar-links">
+          <NavLinks />
         </div>
-
-        {/* Mobile Hamburger */}
-        <button
-          className="sm:hidden text-neutral-400 focus:outline-none"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          {/* Simple hamburger */}
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d={isOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
-            />
-          </svg>
-        </button>
-      </div>
-
-      {/* Mobile Menu */}
-      {isOpen && (
-        <div className="md:hidden px-6 pb-4 flex flex-col gap-3 text-neutral-400">
-          <Link href="/reading" className="hover:text-neutral-100 transition-colors">
-            Reading
-          </Link>
-          <Link href="/deep-dives" className="hover:text-neutral-100 transition-colors">
-            Deep Dives
-          </Link>
-        </div>
-      )}
-    </nav>
+      </nav>
+    </>
   );
 }

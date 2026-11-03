@@ -2,44 +2,51 @@
 
 import { useMemo, useState } from "react"
 import Link from "next/link"
-import type { BookData } from "@/lib/reading"
+import { useRouter } from "next/router"
+import type { BookWithSlug } from "@/lib/reading"
+import { bookFace } from "@/lib/book-colors"
+import { formatReadDate } from "@/lib/dates"
+import Shelf from "@/components/Shelf"
+import TypedCover from "@/components/TypedCover"
 
-function BookCard({ book }: { book: BookData }) {
-  const summaryPreview = (book.summary || []).slice(0, 2)
-  const notesPreview = (book.notes || []).slice(0, 2)
-
+function BookEntry({ book, full }: { book: BookWithSlug; full: boolean }) {
   return (
-    <Link href={`/reading/${(book as any).slug}`} className="no-underline">
-      <div
-        className={`cursor-pointer p-6 rounded-lg shadow-lg bg-neutral-800/50 border border-neutral-800 hover:shadow-xl transition-shadow`}
-        style={{ minHeight: 160 }}
-      >
-        <div className="flex justify-between items-start gap-4">
-          <div>
-              <h3 className="text-2xl font-serif text-neutral-100">{book.title}</h3>
-            <p className="text-sm text-neutral-400 mt-1">by {book.author}</p>
-          </div>
-          <div className="text-sm text-neutral-400 text-right">
-            Rating: {book.rating}/10
-            <br />Read: {book.dateRead ? new Date(book.dateRead).toLocaleDateString('en-US', { month: 'long', year: 'numeric' }) : '—'}
-          </div>
-        </div>
-
-        <div className="mt-4 text-neutral-300">
-          <h4 className="text-xs font-semibold text-neutral-500 uppercase tracking-wide">Summary</h4>
-          <p className="text-sm text-neutral-300 mt-2">{summaryPreview.length ? summaryPreview.join(' ') : '—'}</p>
-        </div>
-
-        <div className="mt-4 text-neutral-300">
-          <h4 className="text-xs font-semibold text-neutral-500 uppercase tracking-wide">Notes</h4>
-          <p className="text-sm text-neutral-300 mt-2">{notesPreview.length ? notesPreview.join(' ') : '—'}</p>
-        </div>
+    <div className="book-entry">
+      {book.cover ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img className="book-thumb" src={book.cover} alt={book.title} loading="lazy" />
+      ) : (
+        <span className="book-thumb typed">
+          <TypedCover title={book.title} author={book.author} face={bookFace(book)} />
+        </span>
+      )}
+      <div className="book-text">
+        <h2 className="book-title">
+          <Link href={`/reading/${book.slug}`} scroll={!full}>{book.title}</Link>
+        </h2>
+        <p className="book-author">{book.author}</p>
+        <p className="book-meta">
+          {book.dateRead ? `Read: ${formatReadDate(book.dateRead)} • ` : ""}Rating: {book.rating}/10
+        </p>
+        <article>
+          {full ? (
+            <>
+              {book.summary.length > 0 ? <h3>Summary</h3> : null}
+              {book.summary.length > 0 ? <ul>{book.summary.map((s, i) => <li key={i}>{s}</li>)}</ul> : null}
+              {book.notes.length > 0 ? <h3>Notes</h3> : null}
+              {book.notes.length > 0 ? <ul>{book.notes.map((n, i) => <li key={i}>{n}</li>)}</ul> : null}
+            </>
+          ) : (
+            (book.notes.length > 0 ? book.notes : book.summary.slice(0, 2)).map((text, i) => <p key={i}>{text}</p>)
+          )}
+        </article>
       </div>
-    </Link>
+    </div>
   )
 }
 
-export default function ReadingClient({ books }: { books: BookData[] }) {
+export default function ReadingClient({ books, slug }: { books: BookWithSlug[]; slug: string | null }) {
+  const router = useRouter()
   const [query, setQuery] = useState("")
 
   const filtered = useMemo(() => {
@@ -48,28 +55,40 @@ export default function ReadingClient({ books }: { books: BookData[] }) {
     return books.filter((b) => (b.title || "").toLowerCase().includes(q) || (b.author || "").toLowerCase().includes(q))
   }, [books, query])
 
-  return (
-    <div className="relative mx-auto mt-12 mb-12 w-full max-w-2xl px-4 sm:px-0">
-      <div className="mb-6">
-          <label className="block text-sm text-neutral-300 mb-2">Search by title or author</label>
-          <label className="block text-xs text-neutral-400 mb-2">These are the books I found interesting, otherwise checkout my <Link href={'/library'} className="underline text-blue-500">library</Link></label>
-        <input
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search books..."
-            className="w-full px-4 py-3 rounded-md bg-neutral-800/40 border border-neutral-700 focus:outline-none focus:ring-2 focus:ring-neutral-600 text-neutral-100"
-        />
-      </div>
+  const selected = slug ? books.find((b) => b.slug === slug) ?? null : null
 
-      <div className="grid grid-cols-1 gap-6">
+  function select(next: string) {
+    router.push(next === slug ? "/reading" : `/reading/${next}`, undefined, { scroll: false })
+  }
+
+  return (
+    <>
+      <Shelf books={books} selected={slug} onSelect={select} />
+      <hr className="rule" />
+
+      {selected ? (
+        <BookEntry book={selected} full />
+      ) : (
+        <>
+          <p className="page-note">
+            These are the books I found interesting, otherwise checkout my <Link href="/library">library</Link>
+          </p>
+          <label htmlFor="shelf-search" className="sr-only">Search by title or author</label>
+          <input
+            id="shelf-search"
+            className="search"
+            type="search"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search books..."
+          />
           {filtered.length === 0 ? (
-          <p className="text-neutral-500">No results</p>
-        ) : (
-          filtered.map((book, idx) => (
-            <BookCard key={idx} book={book} />
-          ))
-        )}
-      </div>
-    </div>
+            <p>No results</p>
+          ) : (
+            filtered.map((book) => <BookEntry key={book.slug} book={book} full={false} />)
+          )}
+        </>
+      )}
+    </>
   )
 }

@@ -1,8 +1,12 @@
 import Head from 'next/head'
-import React, { JSX, useMemo, useState } from 'react'
+import React, { JSX, useEffect, useMemo, useRef, useState } from 'react'
+import { clothFor, hash } from '@/lib/book-colors'
+import { openWidth, ShelfBook } from '@/components/Shelf'
+import covers from '@/lib/data/library-covers.json'
 
 export default function Library(): JSX.Element {
   const [query, setQuery] = useState('')
+  const [openEntry, setOpenEntry] = useState<string | null>(null)
 
   const books = useMemo(() => [
     'Percy Jackson and the Olympians: The Lightning Thief',
@@ -156,35 +160,144 @@ export default function Library(): JSX.Element {
     return books.filter((b) => b.toLowerCase().includes(q))
   }, [query, books])
 
+  // Rows are worked out from closed spines, so opening a book never moves a book to another row.
+  const listRef = useRef<HTMLDivElement>(null)
+  const [listWidth, setListWidth] = useState(564)
+
+  useEffect(() => {
+    const list = listRef.current
+    if (!list) return
+    const observer = new ResizeObserver(() => setListWidth(list.clientWidth))
+    observer.observe(list)
+    return () => observer.disconnect()
+  }, [])
+
+  const rows = useMemo(() => packRows(filtered, listWidth), [filtered, listWidth])
+
   return (
     <>
       <Head>
-        <title>Library</title>
+        <title>Library | Aly Hassan Youssef</title>
       </Head>
-      <main className="mx-auto mt-16 p-4 max-w-4xl">
-        <h1 className="text-4xl font-serif text-neutral-100 mb-8">My Library</h1>
+      <h1 className="page-title">My Library</h1>
 
-        <div className="mb-6">
-          <label htmlFor="book-search" className="block text-sm text-neutral-300 mb-2">
-            Search
-          </label>
-          <input
-            id="book-search"
-            type="search"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search books..."
-            className="w-full px-4 py-3 rounded-md bg-neutral-800/40 border border-neutral-700 focus:outline-none focus:ring-2 focus:ring-neutral-600 text-neutral-100"
-            aria-label="Search books"
-          />
-        </div>
+      <label htmlFor="book-search" className="sr-only">Search books</label>
+      <input
+        id="book-search"
+        className="search"
+        type="search"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        placeholder="Search books..."
+      />
 
-        <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-          {filtered.map((title) => (
-            <li key={title} className="p-4 bg-neutral-800/50 border border-neutral-700 rounded-md text-neutral-300 hover:bg-neutral-700/50 transition-colors">{title}</li>
-          ))}
-        </ul>
-      </main>
+      <div className="library" ref={listRef}>
+        {filtered.length === 0 ? (
+          <p>No results</p>
+        ) : (
+          rows.map((row) => (
+            <LibraryRow
+              key={row[0]}
+              row={row}
+              openEntry={openEntry}
+              onSelect={(entry) => setOpenEntry(entry === openEntry ? null : entry)}
+            />
+          ))
+        )}
+      </div>
     </>
   )
+}
+
+type LibraryCover = { cover: string; spineColor: string; textColor: string }
+
+const GAP = 12
+
+function spineWidth(entry: string) {
+  const { title } = parseEntry(entry)
+  // Wide enough for the title to wrap onto as many lines as it needs.
+  const lines = Math.ceil((title.length * 6.2) / 196)
+  return 26 + lines * 15 + (hash(entry) % 6)
+}
+
+function packRows(entries: string[], width: number) {
+  const rows: string[][] = []
+  let used = 0
+  for (const entry of entries) {
+    const needed = spineWidth(entry)
+    const row = rows[rows.length - 1]
+    if (row && used + GAP + needed <= width) {
+      row.push(entry)
+      used += GAP + needed
+    } else {
+      rows.push([entry])
+      used = needed
+    }
+  }
+  return rows
+}
+
+function LibraryRow({
+  row,
+  openEntry,
+  onSelect,
+}: {
+  row: string[]
+  openEntry: string | null
+  onSelect: (entry: string) => void
+}) {
+  const rowRef = useRef<HTMLUListElement>(null)
+  const openIndex = openEntry ? row.indexOf(openEntry) : -1
+
+  // Slide this row so the open book is in the middle. The row is still growing during
+  // the swing and can't scroll past its current width, so slide again once it has finished.
+  useEffect(() => {
+    const element = rowRef.current
+    if (!element) return
+    if (openIndex < 0) {
+      element.scrollTo({ left: 0, behavior: 'smooth' })
+      return
+    }
+    const before = row.slice(0, openIndex).reduce((sum, entry) => sum + spineWidth(entry) + GAP, 0)
+    const left = before - (element.clientWidth - openWidth(spineWidth(row[openIndex]))) / 2
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const slide = () => element.scrollTo({ left, behavior: reduce ? 'auto' : 'smooth' })
+    slide()
+    const timer = window.setTimeout(slide, 520)
+    return () => window.clearTimeout(timer)
+  }, [openIndex, row])
+
+  return (
+    <ul className="shelf-row" ref={rowRef}>
+      {row.map((entry) => {
+        const { title, author, group } = parseEntry(entry)
+        const match = (covers as Record<string, LibraryCover>)[entry]
+        return (
+          <li key={entry}>
+            <ShelfBook
+              title={title}
+              author={author}
+              cover={match?.cover ?? null}
+              face={match ? { background: match.spineColor, color: match.textColor } : clothFor(group)}
+              spineWidth={spineWidth(entry)}
+              open={entry === openEntry}
+              onSelect={() => onSelect(entry)}
+            />
+          </li>
+        )
+      })}
+    </ul>
+  )
+}
+
+// Entries look like "Title - Author" or "Series: Title". Books in a series, or
+// by one author, share a cloth colour, the way a set does on a real shelf.
+function parseEntry(entry: string) {
+  const dash = entry.lastIndexOf(" - ")
+  const full = dash > -1 ? entry.slice(0, dash) : entry
+  const author = dash > -1 ? entry.slice(dash + 3) : ""
+  const colon = full.indexOf(": ")
+  const series = colon > -1 ? full.slice(0, colon) : ""
+  const title = series ? full.slice(colon + 2) : full
+  return { title, author, group: author || series || full }
 }

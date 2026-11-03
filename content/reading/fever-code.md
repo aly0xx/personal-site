@@ -3,6 +3,9 @@ title: "The Fever Code"
 author: "James Dashner"
 rating: 8
 dateRead: "7/25/2026"
+cover: "/covers/fever-code.jpg"
+spineColor: "#8f7f22"
+textColor: "#fff"
 ---
 
 ## Notes

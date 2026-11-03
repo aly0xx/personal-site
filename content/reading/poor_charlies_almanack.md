@@ -3,6 +3,9 @@ title: "Poor Charlie's Almanack"
 author: "Charlie Munger, Peter D. Kaufman"
 rating: 7
 dateRead: "12/20/2025"
+cover: "/covers/poor_charlies_almanack.jpg"
+spineColor: "#2f3d1a"
+textColor: "#f2e6c0"
 ---
 
 ## Summary

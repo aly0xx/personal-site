@@ -3,6 +3,9 @@ title: "Junglekeeper: What it Takes to Change the World"
 author: "Paul Rosolie"
 rating: 7
 dateRead: "2/30/2026"
+cover: "/covers/junglekeeper.jpg"
+spineColor: "#35482f"
+textColor: "#f2b632"
 ---
 
 ## Summary

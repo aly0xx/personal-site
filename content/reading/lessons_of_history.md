@@ -3,6 +3,9 @@ title: "The Lessons of History"
 author: "Will and Ariel Durant"
 rating: 4
 dateRead: "3/1/2026"
+cover: "/covers/lessons_of_history.jpg"
+spineColor: "#1f6f7f"
+textColor: "#f2d36b"
 ---
 
 ## Summary

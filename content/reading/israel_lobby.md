@@ -3,6 +3,9 @@ title: "The Israel Lobby and U.S. Foreign Policy"
 author: "John Mearsheimer and Stephen Walt"
 rating: 8
 dateRead: "3/3/2026"
+cover: "/covers/israel_lobby.jpg"
+spineColor: "#1f4f8f"
+textColor: "#fff"
 ---
 
 ## Summary

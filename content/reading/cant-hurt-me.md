@@ -3,6 +3,9 @@ title: "Can't Hurt Me"
 author: "David Goggins"
 rating: 9
 dateRead: "5/24/2026"
+cover: "/covers/cant-hurt-me.jpg"
+spineColor: "#c39a3a"
+textColor: "#000"
 ---
 
 ## Summary

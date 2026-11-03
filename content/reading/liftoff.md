@@ -3,6 +3,9 @@ title: "Liftoff"
 author: "Eric Berger"
 rating: 7
 dateRead: "6/26/2026"
+cover: "/covers/liftoff.jpg"
+spineColor: "#2f9fe0"
+textColor: "#000"
 ---
 
 ## Summary

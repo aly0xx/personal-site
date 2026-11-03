@@ -3,6 +3,9 @@ title: "Endurance: Shackleton's Incredible Voyage"
 author: "Alfred Lansing"
 rating: 9
 dateRead: "4/25/2026"
+cover: "/covers/endurance.jpg"
+spineColor: "#b8902f"
+textColor: "#000"
 ---
 
 ## Summary

@@ -3,6 +3,9 @@ title: "Animal Farm"
 author: "George Orwell"
 rating: 9
 dateRead: "3/20/2026"
+cover: "/covers/animal-farm.jpg"
+spineColor: "#b3201f"
+textColor: "#fff"
 ---
 
 ## Summary 

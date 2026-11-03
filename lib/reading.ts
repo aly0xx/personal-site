@@ -1,6 +1,7 @@
 import fs from "fs"
 import path from "path"
 import matter from "gray-matter"
+import { readDateSortKey } from "@/lib/dates"
 
 export type BookData = {
   title: string
@@ -9,6 +10,9 @@ export type BookData = {
   notes: string[]
   rating: number
   dateRead: string | null
+  cover: string | null
+  spineColor: string | null
+  textColor: string | null
 }
 export type BookWithSlug = BookData & { slug: string }
 
@@ -74,8 +78,11 @@ export function getAllBooks(): BookWithSlug[] {
       notes: parsedNotes || [],
       rating: data.rating || 0,
       dateRead: data.dateRead || null,
+      cover: data.cover || null,
+      spineColor: data.spineColor || null,
+      textColor: data.textColor || null,
     }
-  })
+  }).sort((a, b) => readDateSortKey(b.dateRead) - readDateSortKey(a.dateRead))
 }
 
 export function getBookBySlug(slug: string): BookWithSlug | null {
@@ -133,6 +140,9 @@ export function getBookBySlug(slug: string): BookWithSlug | null {
       notes: parsedNotes || [],
       rating: data.rating || 0,
       dateRead: data.dateRead || null,
+      cover: data.cover || null,
+      spineColor: data.spineColor || null,
+      textColor: data.textColor || null,
     }
   }
   return null
