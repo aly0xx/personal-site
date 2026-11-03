@@ -246,8 +246,47 @@ test("navigation marks the current page", async ({ page }) => {
   await expect(page.locator('nav:visible a[aria-current="page"]')).toHaveText("Reading")
 })
 
+test("the timelapse tab reaches its page", async ({ page }) => {
+  await page.goto("/")
+  await page.locator("nav:visible").getByRole("link", { name: "Timelapse" }).click()
+  await expect(page).toHaveURL(/\/timelapse$/)
+  await expect(page.getByRole("heading", { level: 1, name: "Timelapse" })).toBeVisible()
+  await expect(page.locator('nav:visible a[aria-current="page"]')).toHaveText("Timelapse")
+  await expect(page).toHaveTitle("Timelapse | Aly Hassan Youssef")
+  await expectNoPageOverflow(page)
+})
+
+test("every page links to the social accounts", async ({ page }) => {
+  for (const path of ["/", "/reading", "/library", "/deep-dives", "/timelapse"]) {
+    await page.goto(path)
+    const footer = page.locator("footer.social-links")
+    await expect(footer.getByRole("link", { name: "GitHub" })).toHaveAttribute("href", "https://github.com/aly0xx")
+    await expect(footer.getByRole("link", { name: "YouTube" })).toHaveAttribute("href", "https://www.youtube.com/@aly0xx")
+    await expect(footer.getByRole("link", { name: "X", exact: true })).toHaveAttribute("href", "https://x.com/aly0xx")
+    await expect(footer.getByRole("link", { name: "LinkedIn" })).toHaveAttribute("href", "https://www.linkedin.com/in/aly-youssef-b1570b223/")
+    await expect(footer.getByRole("link", { name: "YouTube" })).toHaveAttribute("target", "_blank")
+    await expectNoPageOverflow(page)
+  }
+})
+
+test("the social icons sit in one row, in the nav's muted colour", async ({ page }) => {
+  await page.goto("/")
+  const links = page.locator("footer.social-links a")
+  const tops = await links.evaluateAll((elements) => elements.map((el) => Math.round(el.getBoundingClientRect().top)))
+  expect(new Set(tops).size).toBe(1)
+  await expect(links.first()).toHaveCSS("color", "rgb(108, 102, 85)")
+})
+
+test("no tab breaks across two lines in the top bar", async ({ page, isMobile }) => {
+  test.skip(!isMobile, "The top bar only shows on small screens")
+  await page.goto("/")
+  await expect(page.locator(".topbar a")).toHaveCount(5)
+  const heights = await page.locator(".topbar a").evaluateAll((elements) => elements.map((el) => el.getClientRects().length))
+  expect(heights).toEqual([1, 1, 1, 1, 1])
+})
+
 test("screenshots for visual review", async ({ page }, info) => {
-  for (const [name, path] of [["home", "/"], ["reading", "/reading"], ["book", "/reading/siddhartha"], ["library", "/library"]]) {
+  for (const [name, path] of [["home", "/"], ["reading", "/reading"], ["book", "/reading/siddhartha"], ["library", "/library"], ["timelapse", "/timelapse"]]) {
     await page.goto(path)
     await page.waitForTimeout(900)
     await page.screenshot({ path: info.outputPath(`${name}.png`) })

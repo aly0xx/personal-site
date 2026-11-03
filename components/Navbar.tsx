@@ -6,6 +6,7 @@ const LINKS = [
   { href: "/reading", label: "Reading" },
   { href: "/library", label: "Library" },
   { href: "/deep-dives", label: "Deep Dives" },
+  { href: "/timelapse", label: "Timelapse" },
 ];
 
 function NavLinks() {

@@ -2,6 +2,7 @@ import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { DM_Sans, Lora } from "next/font/google";
 import Navbar from "@/components/Navbar";
+import SocialLinks from "@/components/SocialLinks";
 
 const lora = Lora({
   subsets: ["latin"],
@@ -20,6 +21,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <Navbar />
       <main className="site-main">
         <Component {...pageProps} />
+        <SocialLinks />
       </main>
     </div>
   );

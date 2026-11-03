@@ -496,6 +496,31 @@ a {
   margin-bottom: 12px;
 }
 
+/* Timelapses: a run of numbered links */
+.timelapses {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+}
+
+/* Social icons at the foot of every page. The padding is the tap target. */
+.social-links {
+  display: flex;
+  gap: 8px;
+  margin-top: 48px;
+  margin-left: -10px;
+}
+
+.social-links a {
+  padding: 10px;
+  color: var(--nav-muted);
+  transition: color 120ms ease-out;
+}
+
+.social-links a:hover {
+  color: var(--link);
+}
+
 /* Library: the same books, on rows that each slide on their own */
 .library {
   display: flex;
@@ -519,7 +544,8 @@ a {
     top: 0;
     z-index: 10;
     display: flex;
-    gap: 20px;
+    flex-wrap: wrap;
+    gap: 4px 20px;
     margin-bottom: 16px;
     padding: 10px 32px;
     background: var(--background);
@@ -544,7 +570,7 @@ a {
 
 @media (max-width: 480px) {
   .topbar {
-    gap: 16px;
+    gap: 4px 16px;
     padding-inline: 20px;
   }
 
