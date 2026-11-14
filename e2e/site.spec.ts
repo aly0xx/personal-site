@@ -147,74 +147,24 @@ test("a spine can be opened from the keyboard", async ({ page, isMobile }) => {
 
 test("the library lists every book and can be searched", async ({ page }) => {
   await page.goto("/library")
-  await expect(page.locator(".library .shelf-book")).toHaveCount(143)
+  await expect(page.locator(".library .library-book")).toHaveCount(143)
   await expectNoPageOverflow(page)
   await page.getByPlaceholder("Search books...").fill("tolkien")
-  await expect(page.locator(".library .shelf-book")).toHaveCount(4)
+  await expect(page.locator(".library .library-book")).toHaveCount(4)
   await expectNoPageOverflow(page)
 })
 
-test("clicking a library book shows its cover, and only one stays open", async ({ page }) => {
+test("library books show their front covers", async ({ page }) => {
   await page.goto("/library")
-  const hobbit = page.getByRole("button", { name: /^The Hobbit by/ })
-  const shoeDog = page.getByRole("button", { name: /^Shoe Dog by/ })
-
-  await hobbit.click()
-  await expect(hobbit).toHaveAttribute("aria-pressed", "true")
-  const image = hobbit.locator(".shelf-cover img")
-  await expect(image).toHaveAttribute("src", /the-hobbit/)
-  await expect.poll(() => image.evaluate((img: HTMLImageElement) => img.naturalWidth)).toBeGreaterThan(0)
-  await expect.poll(() =>
-    hobbit.locator(".shelf-cover").evaluate((el) => Math.round((Math.acos(new DOMMatrix(getComputedStyle(el).transform).m11) * 180) / Math.PI))
-  ).toBe(30)
-  await page.screenshot({ path: test.info().outputPath("library-open.png") })
-
-  await shoeDog.click()
-  await expect(shoeDog).toHaveAttribute("aria-pressed", "true")
-  await expect(hobbit).toHaveAttribute("aria-pressed", "false")
-
-  await shoeDog.click()
-  await expect(shoeDog).toHaveAttribute("aria-pressed", "false")
-})
-
-test("opening a library book only moves books on its own row", async ({ page }) => {
-  await page.goto("/library")
-  const rows = page.locator(".library .shelf-row")
-  const layout = () =>
-    page.locator(".library .shelf-row").evaluateAll((elements) =>
-      elements.map((row) => ({
-        top: Math.round(row.getBoundingClientRect().top + window.scrollY),
-        books: [...row.querySelectorAll(".shelf-book")].map((book) => book.getAttribute("aria-label")),
-        lefts: [...row.querySelectorAll(".shelf-book")].map((book) => Math.round(book.getBoundingClientRect().left)),
-      }))
-    )
-
-  const before = await layout()
-  // The last book on a row has the furthest to slide to stay in view.
-  const book = rows.nth(2).locator(".shelf-book").last()
-  await book.click()
-  await page.waitForTimeout(1200)
-  const after = await layout()
-
-  expect(after.map((row) => [row.top, row.books])).toEqual(before.map((row) => [row.top, row.books]))
-  expect(after.filter((_, i) => i !== 2).map((row) => row.lefts)).toEqual(before.filter((_, i) => i !== 2).map((row) => row.lefts))
-  await expect(book.locator(".shelf-cover")).toBeInViewport({ ratio: 0.99 })
-  await expectNoPageOverflow(page)
-
-  await book.click()
-  await page.waitForTimeout(1200)
-  expect(await layout()).toEqual(before)
-})
-
-test("library spines take their colour from the book's cover", async ({ page }) => {
-  await page.goto("/library")
-  const book = page.getByRole("button", { name: /^Shoe Dog by/ })
-  // The Shoe Dog cover is almost all red.
-  const [red, green] = await book.locator(".shelf-spine").evaluate((el) => {
-    const [r, g] = getComputedStyle(el).backgroundColor.match(/\d+/g)!.map(Number)
-    return [r, g]
-  })
-  expect(red).toBeGreaterThan(green + 80)
+  const hobbit = page.getByRole("img", { name: /^The Hobbit by/ })
+  await expect(hobbit).toHaveAttribute("src", /the-hobbit/)
+  await hobbit.scrollIntoViewIfNeeded()
+  await expect.poll(() => hobbit.evaluate((img: HTMLImageElement) => img.naturalWidth)).toBeGreaterThan(0)
+  // Covers keep a book's proportions, in a grid with several to a row.
+  const box = (await hobbit.boundingBox())!
+  expect(box.height / box.width).toBeCloseTo(1.5, 1)
+  const tops = await page.locator(".library-book").evaluateAll((els) => els.slice(0, 3).map((el) => Math.round(el.getBoundingClientRect().top)))
+  expect(new Set(tops).size).toBe(1)
 })
 
 test("every library cover file exists", async ({ page, request }) => {
@@ -228,8 +178,7 @@ test("every library cover file exists", async ({ page, request }) => {
 
 test("a book with no cover image falls back to a typed cover", async ({ page }) => {
   await page.goto("/library")
-  const book = page.getByRole("button", { name: /^Some Stephen Hawking books/ })
-  await book.click()
+  const book = page.getByRole("img", { name: /^Some Stephen Hawking books/ })
   await expect(book.locator(".typed-cover")).toContainText("Some Stephen Hawking books")
 })
 

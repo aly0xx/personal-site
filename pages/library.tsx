@@ -1,12 +1,11 @@
 import Head from 'next/head'
-import React, { JSX, useEffect, useMemo, useRef, useState } from 'react'
-import { clothFor, hash } from '@/lib/book-colors'
-import { openWidth, ShelfBook } from '@/components/Shelf'
+import React, { JSX, useMemo, useState } from 'react'
+import { clothFor } from '@/lib/book-colors'
+import TypedCover from '@/components/TypedCover'
 import covers from '@/lib/data/library-covers.json'
 
 export default function Library(): JSX.Element {
   const [query, setQuery] = useState('')
-  const [openEntry, setOpenEntry] = useState<string | null>(null)
 
   const books = useMemo(() => [
     'Percy Jackson and the Olympians: The Lightning Thief',
@@ -160,20 +159,6 @@ export default function Library(): JSX.Element {
     return books.filter((b) => b.toLowerCase().includes(q))
   }, [query, books])
 
-  // Rows are worked out from closed spines, so opening a book never moves a book to another row.
-  const listRef = useRef<HTMLDivElement>(null)
-  const [listWidth, setListWidth] = useState(564)
-
-  useEffect(() => {
-    const list = listRef.current
-    if (!list) return
-    const observer = new ResizeObserver(() => setListWidth(list.clientWidth))
-    observer.observe(list)
-    return () => observer.disconnect()
-  }, [])
-
-  const rows = useMemo(() => packRows(filtered, listWidth), [filtered, listWidth])
-
   return (
     <>
       <Head>
@@ -191,103 +176,77 @@ export default function Library(): JSX.Element {
         placeholder="Search books..."
       />
 
-      <div className="library" ref={listRef}>
-        {filtered.length === 0 ? (
-          <p>No results</p>
-        ) : (
-          rows.map((row) => (
-            <LibraryRow
-              key={row[0]}
-              row={row}
-              openEntry={openEntry}
-              onSelect={(entry) => setOpenEntry(entry === openEntry ? null : entry)}
-            />
-          ))
-        )}
-      </div>
+      {filtered.length === 0 ? (
+        <p>No results</p>
+      ) : (
+        <ul className="library">
+          {filtered.map((entry) => <LibraryBook key={entry} entry={entry} />)}
+        </ul>
+      )}
     </>
   )
 }
 
 type LibraryCover = { cover: string; spineColor: string; textColor: string }
 
-const GAP = 12
-
-function spineWidth(entry: string) {
-  const { title } = parseEntry(entry)
-  // Wide enough for the title to wrap onto as many lines as it needs.
-  const lines = Math.ceil((title.length * 6.2) / 196)
-  return 26 + lines * 15 + (hash(entry) % 6)
-}
-
-function packRows(entries: string[], width: number) {
-  const rows: string[][] = []
-  let used = 0
-  for (const entry of entries) {
-    const needed = spineWidth(entry)
-    const row = rows[rows.length - 1]
-    if (row && used + GAP + needed <= width) {
-      row.push(entry)
-      used += GAP + needed
-    } else {
-      rows.push([entry])
-      used = needed
-    }
-  }
-  return rows
-}
-
-function LibraryRow({
-  row,
-  openEntry,
-  onSelect,
-}: {
-  row: string[]
-  openEntry: string | null
-  onSelect: (entry: string) => void
-}) {
-  const rowRef = useRef<HTMLUListElement>(null)
-  const openIndex = openEntry ? row.indexOf(openEntry) : -1
-
-  // Slide this row so the open book is in the middle. The row is still growing during
-  // the swing and can't scroll past its current width, so slide again once it has finished.
-  useEffect(() => {
-    const element = rowRef.current
-    if (!element) return
-    if (openIndex < 0) {
-      element.scrollTo({ left: 0, behavior: 'smooth' })
-      return
-    }
-    const before = row.slice(0, openIndex).reduce((sum, entry) => sum + spineWidth(entry) + GAP, 0)
-    const left = before - (element.clientWidth - openWidth(spineWidth(row[openIndex]))) / 2
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    const slide = () => element.scrollTo({ left, behavior: reduce ? 'auto' : 'smooth' })
-    slide()
-    const timer = window.setTimeout(slide, 520)
-    return () => window.clearTimeout(timer)
-  }, [openIndex, row])
+// Each book stands face-out, showing its front cover.
+function LibraryBook({ entry }: { entry: string }) {
+  const { title, author, group } = parseEntry(entry)
+  const match = (covers as Record<string, LibraryCover>)[entry]
+  const label = author ? `${title} by ${author}` : title
 
   return (
-    <ul className="shelf-row" ref={rowRef}>
-      {row.map((entry) => {
-        const { title, author, group } = parseEntry(entry)
-        const match = (covers as Record<string, LibraryCover>)[entry]
-        return (
-          <li key={entry}>
-            <ShelfBook
-              title={title}
-              author={author}
-              cover={match?.cover ?? null}
-              face={match ? { background: match.spineColor, color: match.textColor } : clothFor(group)}
-              spineWidth={spineWidth(entry)}
-              open={entry === openEntry}
-              onSelect={() => onSelect(entry)}
-            />
-          </li>
-        )
-      })}
-    </ul>
+    <li className="library-book">
+      {match ? (
+        <>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={match.cover} alt={label} loading="lazy" />
+          {/* Shown on hover; the image's alt text already names the book for screen readers. */}
+          <span className="library-caption" aria-hidden="true">
+            <span className="library-caption-title">{title}</span>
+            {author ? <span className="library-caption-author">{author}</span> : null}
+          </span>
+        </>
+      ) : (
+        <span className="library-typed" role="img" aria-label={label}>
+          <TypedCover title={title} author={author} face={clothFor(group)} />
+        </span>
+      )}
+    </li>
   )
+}
+
+// Book series whose entries are written "Series: Title". Any other colon is
+// part of the book's own title, as in "Einstein: His Life and Universe".
+const SERIES = new Set([
+  'Percy Jackson and the Olympians',
+  'The Heroes of Olympus',
+  'The Trials of Apollo',
+  'Magnus Chase and the Gods of Asgard',
+  'The Lord of the Rings',
+])
+
+// Authors for the entries written without one, by series or by title.
+const AUTHORS: Record<string, string> = {
+  'Percy Jackson and the Olympians': 'Rick Riordan',
+  'The Heroes of Olympus': 'Rick Riordan',
+  'The Trials of Apollo': 'Rick Riordan',
+  'Magnus Chase and the Gods of Asgard': 'Rick Riordan',
+  'Percy Jackson and the Greek Heroes': 'Rick Riordan',
+  'Percy Jackson and the Greek Gods': 'Rick Riordan',
+  'The Maze Runner': 'James Dashner',
+  'The Scorch Trials': 'James Dashner',
+  'The Death Cure': 'James Dashner',
+  'The Kill Order': 'James Dashner',
+  'The Fever Code': 'James Dashner',
+  'Chandra\'s Cosmos': 'Wallace H. Tucker',
+  'Remembering the Kanji 1': 'James W. Heisig',
+  'Some Stephen Hawking books': 'Stephen Hawking',
+}
+
+// Entries whose " - " isn't separating the title from the author.
+const OVERRIDES: Record<string, { title: string; author: string }> = {
+  'Percy Jackson - The Demigod Files': { title: 'The Demigod Files', author: 'Rick Riordan' },
 }
 
 // Entries look like "Title - Author" or "Series: Title". Books in a series, or
@@ -295,9 +254,15 @@ function LibraryRow({
 function parseEntry(entry: string) {
   const dash = entry.lastIndexOf(" - ")
   const full = dash > -1 ? entry.slice(0, dash) : entry
-  const author = dash > -1 ? entry.slice(dash + 3) : ""
+  const written = dash > -1 ? entry.slice(dash + 3) : ""
   const colon = full.indexOf(": ")
-  const series = colon > -1 ? full.slice(0, colon) : ""
+  const prefix = colon > -1 ? full.slice(0, colon) : ""
+  const series = SERIES.has(prefix) ? prefix : ""
+  const group = written || prefix || full
+
+  const override = OVERRIDES[entry]
+  if (override) return { ...override, group }
   const title = series ? full.slice(colon + 2) : full
-  return { title, author, group: author || series || full }
+  const author = written || AUTHORS[series] || AUTHORS[full] || ""
+  return { title, author, group }
 }
