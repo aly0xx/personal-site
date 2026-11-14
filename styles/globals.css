@@ -442,6 +442,15 @@ a {
   height: 160px;
 }
 
+.book-thumb-link {
+  display: block;
+  flex-shrink: 0;
+}
+
+.book-thumb-link .book-thumb {
+  display: block;
+}
+
 .book-thumb.typed {
   width: 107px;
   overflow: hidden;

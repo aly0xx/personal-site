@@ -8,17 +8,25 @@ import { bookFace } from "@/lib/book-colors"
 import { formatReadDate } from "@/lib/dates"
 import Shelf from "@/components/Shelf"
 import TypedCover from "@/components/TypedCover"
+import InlineMarkdown from "@/components/InlineMarkdown"
 
 function BookEntry({ book, full }: { book: BookWithSlug; full: boolean }) {
+  const thumb = book.cover ? (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img className="book-thumb" src={book.cover} alt={book.title} loading="lazy" />
+  ) : (
+    <span className="book-thumb typed">
+      <TypedCover title={book.title} author={book.author} face={bookFace(book)} />
+    </span>
+  )
+
   return (
     <div className="book-entry">
-      {book.cover ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img className="book-thumb" src={book.cover} alt={book.title} loading="lazy" />
-      ) : (
-        <span className="book-thumb typed">
-          <TypedCover title={book.title} author={book.author} face={bookFace(book)} />
-        </span>
+      {full ? thumb : (
+        // The title link is the accessible one; this just makes the cover clickable too.
+        <Link href={`/reading/${book.slug}`} className="book-thumb-link" tabIndex={-1} aria-hidden="true">
+          {thumb}
+        </Link>
       )}
       <div className="book-text">
         <h2 className="book-title">
@@ -32,12 +40,12 @@ function BookEntry({ book, full }: { book: BookWithSlug; full: boolean }) {
           {full ? (
             <>
               {book.summary.length > 0 ? <h3>Summary</h3> : null}
-              {book.summary.length > 0 ? <ul>{book.summary.map((s, i) => <li key={i}>{s}</li>)}</ul> : null}
+              {book.summary.length > 0 ? <ul>{book.summary.map((s, i) => <li key={i}><InlineMarkdown text={s} /></li>)}</ul> : null}
               {book.notes.length > 0 ? <h3>Notes</h3> : null}
-              {book.notes.length > 0 ? <ul>{book.notes.map((n, i) => <li key={i}>{n}</li>)}</ul> : null}
+              {book.notes.length > 0 ? <ul>{book.notes.map((n, i) => <li key={i}><InlineMarkdown text={n} /></li>)}</ul> : null}
             </>
           ) : (
-            (book.notes.length > 0 ? book.notes : book.summary.slice(0, 2)).map((text, i) => <p key={i}>{text}</p>)
+            (book.notes.length > 0 ? book.notes : book.summary.slice(0, 2)).map((text, i) => <p key={i}><InlineMarkdown text={text} /></p>)
           )}
         </article>
       </div>
