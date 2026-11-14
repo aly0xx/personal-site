@@ -260,8 +260,18 @@ test("the timelapse tab reaches its page", async ({ page }) => {
   await expectNoPageOverflow(page)
 })
 
+test("the projects tab reaches its page", async ({ page }) => {
+  await page.goto("/")
+  await page.locator("nav:visible").getByRole("link", { name: "Projects" }).click()
+  await expect(page).toHaveURL(/\/projects$/)
+  await expect(page.getByRole("heading", { level: 1, name: "Projects" })).toBeVisible()
+  await expect(page.locator('nav:visible a[aria-current="page"]')).toHaveText("Projects")
+  await expect(page).toHaveTitle("Projects | Aly Hassan Youssef")
+  await expectNoPageOverflow(page)
+})
+
 test("every page links to the social accounts", async ({ page }) => {
-  for (const path of ["/", "/reading", "/library", "/deep-dives", "/timelapse"]) {
+  for (const path of ["/", "/projects", "/reading", "/library", "/deep-dives", "/timelapse"]) {
     await page.goto(path)
     const footer = page.locator("footer.social-links")
     await expect(footer.getByRole("link", { name: "GitHub" })).toHaveAttribute("href", "https://github.com/aly0xx")
@@ -284,13 +294,13 @@ test("the social icons sit in one row, in the nav's muted colour", async ({ page
 test("no tab breaks across two lines in the top bar", async ({ page, isMobile }) => {
   test.skip(!isMobile, "The top bar only shows on small screens")
   await page.goto("/")
-  await expect(page.locator(".topbar a")).toHaveCount(5)
+  await expect(page.locator(".topbar a")).toHaveCount(6)
   const heights = await page.locator(".topbar a").evaluateAll((elements) => elements.map((el) => el.getClientRects().length))
-  expect(heights).toEqual([1, 1, 1, 1, 1])
+  expect(heights).toEqual([1, 1, 1, 1, 1, 1])
 })
 
 test("screenshots for visual review", async ({ page }, info) => {
-  for (const [name, path] of [["home", "/"], ["reading", "/reading"], ["book", "/reading/siddhartha"], ["library", "/library"], ["timelapse", "/timelapse"]]) {
+  for (const [name, path] of [["home", "/"], ["reading", "/reading"], ["book", "/reading/siddhartha"], ["library", "/library"], ["projects", "/projects"], ["timelapse", "/timelapse"]]) {
     await page.goto(path)
     await page.waitForTimeout(900)
     await page.screenshot({ path: info.outputPath(`${name}.png`) })

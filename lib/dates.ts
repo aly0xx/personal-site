@@ -22,3 +22,9 @@ export function readDateSortKey(date: string | null): number {
   if (!match) return 0
   return Number(match[3]) * 10000 + Number(match[1]) * 100 + Number(match[2])
 }
+
+// "January 2026 – March 2026", or "January 2026 – Present" while ongoing.
+export function formatDateRange(start: string | null, end: string | null): string {
+  if (!start) return end ? formatReadDate(end) : ""
+  return `${formatReadDate(start)} – ${end ? formatReadDate(end) : "Present"}`
+}
