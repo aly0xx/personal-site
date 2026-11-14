@@ -1,4 +1,8 @@
 import { expect, test, type Page } from "@playwright/test"
+import { getAllBooks } from "../lib/reading"
+
+// Read from content/reading, so adding a book doesn't break the tests.
+const BOOKS = getAllBooks()
 
 function collectErrors(page: Page) {
   const errors: string[] = []
@@ -43,9 +47,9 @@ test("the reading list shows every book, newest first, with covers loaded", asyn
   const errors = collectErrors(page)
   await page.goto("/reading")
   const titles = page.locator(".book-title")
-  await expect(titles).toHaveCount(17)
-  await expect(titles.first()).toHaveText("The Fever Code")
-  await expect(page.locator(".shelf-book")).toHaveCount(17)
+  await expect(titles).toHaveCount(BOOKS.length)
+  await expect(titles.first()).toHaveText(BOOKS[0].title)
+  await expect(page.locator(".shelf-book")).toHaveCount(BOOKS.length)
 
   const firstThumb = page.locator("img.book-thumb").first()
   await firstThumb.scrollIntoViewIfNeeded()
@@ -78,7 +82,7 @@ test("clicking a spine opens the book, clicking again puts it back", async ({ pa
   await expect(page).toHaveURL(/\/reading$/)
   await expect(book).toHaveAttribute("aria-pressed", "false")
   await expect.poll(coverAngle).toBe(90)
-  await expect(page.locator(".book-title")).toHaveCount(17)
+  await expect(page.locator(".book-title")).toHaveCount(BOOKS.length)
 })
 
 test("a book's own URL loads with that book open", async ({ page }) => {
